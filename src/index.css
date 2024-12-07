@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body{
-  @apply bg-[whitesmoke] dark:bg-[#0E1117]
-}
 *{
     font-family: "Roboto", sans-serif;
     font-weight: 400;
