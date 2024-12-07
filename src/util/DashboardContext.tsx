@@ -21,7 +21,7 @@ const DashboardStateContext = createContext<State | undefined>(undefined)
 const DashboardDispatchContext = createContext<Dispatch | undefined>(undefined)
 
 const DashboardReducer = (state: State, action: Action)=> {
-    const { type, payload } = action
+    const { type } = action // destructure payload if you wan use am
 
     switch(type) {
         case "showSideBar": {
