@@ -14,8 +14,9 @@ const UseSpeechRecognition = (): UseSpeechRecognitionReturn => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Check browser compatibility
     const SpeechRecognition =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      (window.SpeechRecognition || window.webkitSpeechRecognition) as typeof window.SpeechRecognition;
 
     if (!SpeechRecognition) {
       setError("Speech recognition is not supported in this browser.");
