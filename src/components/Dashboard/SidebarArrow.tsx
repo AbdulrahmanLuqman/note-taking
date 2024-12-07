@@ -1,5 +1,5 @@
 import { ArrowForward } from "../Icons"
-import { useDashboardState, useDashboardDispatch } from "../../util/DashboardContext"
+import { useDashboardDispatch } from "../../util/DashboardContext"
 import Sidebar from "./Sidebar"
 
 const SidebarArrow = () => {
