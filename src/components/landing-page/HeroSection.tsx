@@ -7,7 +7,7 @@ const HeroSection = () => {
       <div className="mb-6 flex items-center bg-gray-100 w-fit px-3 py-1 rounded-2xl text-sm hover:bg-gray-200 cursor-pointer">
         <Link to="/dashboard">
           <p>
-            Introducing NoteDocs' seamless transcription experience. Check it
+            Introducing noter's seamless transcription experience. Check it
             out
           </p>
         </Link>
