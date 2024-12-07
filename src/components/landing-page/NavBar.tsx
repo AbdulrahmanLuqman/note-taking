@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const buttonStyles = "bg-[#312D2D] text-white rounded-2xl py-1 px-4";
-const hoverStyles = "hover:bg-gray-100 rounded-2xl py-1 sm:px-4";
+const hoverStyles = "hover:bg-gray-200 rounded-2xl py-1 sm:px-4";
 
 const NavBar = () => {
   return (
@@ -13,7 +13,9 @@ const NavBar = () => {
         <button className={hoverStyles}>
           <a href="#feature">Features</a>{" "}
         </button>
-        <GetStarted />
+        <Link to="/dashboard">
+          <GetStarted />
+        </Link>
       </div>
     </nav>
   );
