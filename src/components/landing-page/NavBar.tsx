@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
 const buttonStyles = "bg-[#312D2D] text-white rounded-2xl py-1 px-4";
-const hoverStyles = "hover:bg-gray-100 rounded-2xl py-1 px-4";
+const hoverStyles = "hover:bg-gray-100 rounded-2xl py-1 sm:px-4";
 
 const NavBar = () => {
   return (
-    <nav className="flex justify-between items-center">
+    <nav className="flex justify-between sm:items-center sm:flex-row flex-col gap-3 sm:gap-0">
       <Link to="/">
         <Logo />
       </Link>
