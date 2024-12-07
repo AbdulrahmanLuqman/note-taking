@@ -28,7 +28,7 @@ const HeroSection = () => {
         Unlock the power of voice-to-text
       </h1>
       <p className="mb-6 text-gray-600 max-w-[500px] font-medium text-xl">
-        NoteDocs is the ultimate tool for transforming speech into text. Record,
+        noter is the ultimate tool for transforming speech into text. Record,
         transcribe, download, and more
       </p>
       <Link to="/dashboard">
