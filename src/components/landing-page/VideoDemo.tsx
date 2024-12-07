@@ -14,7 +14,7 @@ const VideoDemo = () => {
       <main>
         <video
           className="object-cover w-full rounded-[15px] md:rounded-[40px]"
-          src="https://res.cloudinary.com/doxshmcth/video/upload/v1720478158/abdulazeemportfolio/MTE_2.0_VIDEO_ttqtia.mp4"
+          src="https://res.cloudinary.com/dt7jocfde/video/upload/v1733610664/noter-preview_bljtwp.mp4"
           autoPlay
           loop
           muted
