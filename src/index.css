@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  @apply bg-[whitesmoke] dark:bg-[#0E1117]
+}
