@@ -1,50 +1,22 @@
-# React + TypeScript + Vite
+# Noter Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Noter Frontend repo 
 
-Currently, two official plugins are available:
+****
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What are we building?
+noter, your go-to app for effortless transcription and accessibility. The main goal is to transform audio into downloadable text, simplifying professional workflows and capturing ideas on the go, seemless trascription experience. Hereis the [Live Demo](https://note-taking-1ynq.vercel.app)
 
-## Expanding the ESLint configuration
+## Stacks
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Here are the main tools/technologies that is being used for this build. They automatically form the prerequisites.
 
-- Configure the top-level `parserOptions` property like this:
+- React JS
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- TypeScript
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- React Router
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Tailwind CSS
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- UseContext
