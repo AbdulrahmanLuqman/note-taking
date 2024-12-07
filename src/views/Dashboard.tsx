@@ -1,6 +1,9 @@
+import Mode from "../components/Mode"
+
 const Dashboard = () => {
   return (
-    <div className="text-4xl">Dashboard</div>
+    <div className="text-4xl">Dashboard <Mode /> </div>
+    
   )
 }
 
