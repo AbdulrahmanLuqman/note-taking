@@ -5,9 +5,8 @@ import LandingPageLayout from "./components/landing-page";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPageLayout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
+      <Route path="/" element={<LandingPageLayout />}></Route>
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 };
