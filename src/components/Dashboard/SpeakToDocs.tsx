@@ -1,15 +1,22 @@
-import Record from "./Record"
-import { useDashboardState } from "../../util/DashboardContext"
+import Record from "./Record";
+import { useDashboardState } from "../../util/DashboardContext";
 
 const SpeakToDocs = () => {
-  const { showSideBar } = useDashboardState()
+  const { showSideBar } = useDashboardState();
 
   return (
-    <div className={`w-[90%] space-y-5 transition-all duration-300 ${showSideBar && "lg:w-[50%] justify-end"}`}>
-        <h1 className="dark:text-white text-gray-500 font-bold">Speak-To-Docs 🔊📝</h1>
-        <Record />
-    </div>
-  )
-}
+    <section
+      className={`w-[90%] space-y-5 transition-all duration-300 ${
+        showSideBar && "lg:w-[50%] justify-end"
+      }`}
+    >
+      <div className="flex items-center gap-2">
+        <img src="./logo.png" alt="logo" className="w-[60px] h-[50px]" />
+        <h1 className="dark:text-white text-gray-500 font-bold">noter</h1>
+      </div>
+      <Record />
+    </section>
+  );
+};
 
-export default SpeakToDocs
+export default SpeakToDocs;
