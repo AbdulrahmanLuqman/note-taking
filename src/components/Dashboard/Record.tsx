@@ -2,7 +2,7 @@ import * as React from "react";
 import { Mic, Stop } from "../Icons";
 import { useAudioRecorder } from "react-audio-voice-recorder";
 
-// Extend the Window interface to include SpeechRecognition and webkitSpeechRecognition
+// Custom declaration to tell TypeScript about SpeechRecognition and webkitSpeechRecognition
 declare global {
   interface Window {
     SpeechRecognition: typeof SpeechRecognition;
@@ -16,19 +16,20 @@ const Record: React.FC = () => {
   const [audioURL, setAudioURL] = React.useState<string | null>(null);
   const [transcription, setTranscription] = React.useState<string | null>(null);
   const [activeTool, setActiveTool] = React.useState(true);
-  const [recognition, setRecognition] =
-    React.useState<SpeechRecognition | null>(null);
+  const [recognition, setRecognition] = React.useState<any>(null); // Use 'any' to bypass the SpeechRecognition type
 
-  // Web Speech API setup
+  // Web Speech API setup (only for the client side)
   React.useEffect(() => {
-    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
-      const recognitionInstance = new (window.SpeechRecognition ||
-        window.webkitSpeechRecognition)();
+    // Ensure SpeechRecognition only runs in the browser environment
+    if (typeof window !== "undefined" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
+      const recognitionInstance = new (
+        window.SpeechRecognition || window.webkitSpeechRecognition
+      )();
       recognitionInstance.continuous = true; // Keep listening after each phrase
       recognitionInstance.interimResults = true; // Show partial results as the user speaks
       recognitionInstance.lang = "en-US"; // Set language (you can change this to your preferred language)
 
-      recognitionInstance.onresult = (event: SpeechRecognitionEvent) => {
+      recognitionInstance.onresult = (event: any) => {
         const result = event.results[event.resultIndex];
         const transcript = result[0].transcript;
         setTranscription(transcript); // Update transcription
@@ -111,7 +112,7 @@ const Record: React.FC = () => {
       {transcription && (
         <main className="w-[90%] bg-white rounded-md p-3 border-t-[30px] border-black relative">
           <p
-            className="absolute top-[-27px] right-2 textwhite text-sm bg-gray-100 p-1 cursor-pointer"
+            className="absolute top-[-27px] right-2 textwhite text-sm bg-gray-100 p-1"
             onClick={() => navigator.clipboard.writeText(transcription)}
           >
             Copy text
@@ -129,7 +130,7 @@ const Record: React.FC = () => {
       {/* Download button */}
       {transcription && (
         <button
-          className="mt-4 bg-[#B26217] text-white py-2 px-4 rounded text-sm"
+          className="mt-4 bg-[#9B500A] text-white rounded py-2 px-4  text-sm"
           onClick={downloadTranscript}
         >
           Download Transcript
