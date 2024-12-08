@@ -1,5 +1,3 @@
-/// <reference lib="webspeechapi" />
-
 import * as React from "react";
 import { Mic, Stop } from "../Icons";
 import { useAudioRecorder } from "react-audio-voice-recorder";
