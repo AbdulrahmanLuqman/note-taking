@@ -113,7 +113,7 @@ const Record: React.FC = () => {
           <textarea
             value={transcription}
             onChange={(e) => setTranscription(e.target.value)}
-            className="focus:outline-none resize-none w-full"
+            className="focus:outline-none resize-none w-full text-[18px]"
           />
         </main>
       )}
