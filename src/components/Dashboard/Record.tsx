@@ -11,28 +11,32 @@ declare global {
 }
 
 const Record: React.FC = () => {
-  const { startRecording, stopRecording, recordingBlob, recordingTime } =
-    useAudioRecorder();
-  const [audioURL, setAudioURL] = React.useState<string | null>(null);
-  const [transcription, setTranscription] = React.useState<string | null>(null);
+  const { startRecording, stopRecording, recordingTime } = useAudioRecorder();
+  const [transcription, setTranscription] = React.useState<string>(""); // Use an empty string initially
   const [activeTool, setActiveTool] = React.useState(true);
-  const [recognition, setRecognition] = React.useState<any>(null); // Use 'any' to bypass the SpeechRecognition type
+  const [recognition, setRecognition] = React.useState<SpeechRecognition | null>(null);
 
   // Web Speech API setup (only for the client side)
   React.useEffect(() => {
-    // Ensure SpeechRecognition only runs in the browser environment
     if (typeof window !== "undefined" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
       const recognitionInstance = new (
         window.SpeechRecognition || window.webkitSpeechRecognition
       )();
       recognitionInstance.continuous = true; // Keep listening after each phrase
       recognitionInstance.interimResults = true; // Show partial results as the user speaks
-      recognitionInstance.lang = "en-US"; // Set language (you can change this to your preferred language)
+      recognitionInstance.lang = "en-US"; // Set language
 
-      recognitionInstance.onresult = (event: any) => {
-        const result = event.results[event.resultIndex];
-        const transcript = result[0].transcript;
-        setTranscription(transcript); // Update transcription
+      recognitionInstance.onresult = (event: SpeechRecognitionEvent) => {
+        let finalTranscript = "";
+        // Loop through all results to get final and interim transcripts
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          // Only add the transcript if it's final (to avoid repeating interim results)
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript + " ";
+          }
+        }
+        setTranscription((prevTranscript) => prevTranscript + finalTranscript); // Append new transcript
       };
 
       recognitionInstance.onerror = (event: Event) => {
@@ -45,18 +49,7 @@ const Record: React.FC = () => {
     }
   }, []);
 
-  React.useEffect(() => {
-    if (recordingBlob) {
-      const url = URL.createObjectURL(recordingBlob);
-      setAudioURL(url);
-    }
-  }, [recordingBlob]);
-
-  const formattedTime = `${Math.floor(recordingTime / 60)}:${(
-    recordingTime % 60
-  )
-    .toString()
-    .padStart(2, "0")}`;
+  const formattedTime = `${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, "0")}`;
 
   // Start and stop speech recognition
   const handleMic = () => {
@@ -108,20 +101,18 @@ const Record: React.FC = () => {
         </div>
         <span className="text-[#7B7B81] text-lg">{formattedTime}</span>
       </div>
-      <div>{audioURL && <audio src={audioURL} controls />}</div>
+
       {transcription && (
         <main className="w-[90%] bg-white rounded-md p-3 border-t-[30px] border-black relative">
           <p
-            className="absolute top-[-27px] right-2 textwhite text-sm bg-gray-100 p-1"
+            className="absolute top-[-27px] right-2 text-black cursor-pointer text-sm bg-gray-100 p-1"
             onClick={() => navigator.clipboard.writeText(transcription)}
           >
             Copy text
           </p>
           <textarea
-            name=""
             value={transcription}
             onChange={(e) => setTranscription(e.target.value)}
-            id=""
             className="focus:outline-none resize-none w-full"
           />
         </main>
@@ -130,7 +121,7 @@ const Record: React.FC = () => {
       {/* Download button */}
       {transcription && (
         <button
-          className="mt-4 bg-[#9B500A] text-white rounded py-2 px-4  text-sm"
+          className="mt-4 bg-[#9B500A] text-white rounded py-2 px-4 text-sm"
           onClick={downloadTranscript}
         >
           Download Transcript
