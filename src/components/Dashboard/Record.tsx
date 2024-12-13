@@ -103,7 +103,7 @@ const Record: React.FC = () => {
       </div>
 
       {transcription && (
-        <main className="w-[90%] bg-white h-[410px] rounded-md p-3 border-t-[30px] border-black relative">
+        <main className="w-[90%] bg-white  rounded-md p-3 border-t-[30px] border-black relative">
           <p
             className="absolute top-[-27px] right-2 text-black cursor-pointer text-sm bg-gray-100 p-1"
             onClick={() => navigator.clipboard.writeText(transcription)}
@@ -113,7 +113,7 @@ const Record: React.FC = () => {
           <textarea
             value={transcription}
             onChange={(e) => setTranscription(e.target.value)}
-            className="focus:outline-none resize-none w-full text-[18px]"
+            className="focus:outline-none resize-none w-full text-[18px] h-[410px]"
           />
         </main>
       )}
